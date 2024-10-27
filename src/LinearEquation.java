@@ -37,7 +37,7 @@ public class LinearEquation {
     public String equation() {
         int y = (y2 - y1);
         int x = (x2 - x1);
-        if (slope() == 0) {
+        if (Double.isNaN(slope())) {
             if (x1 == x2) {
                 return "x = " + x1;
             } else if (y1 == y2) {
