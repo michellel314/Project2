@@ -1,18 +1,36 @@
 import java.util.Scanner;
 
-
 public class LinearEquationLogic {
     private Scanner myScanner ;
     private LinearEquation equation;
-
+    private boolean continueRunning;
 
     public LinearEquationLogic(){
         this.equation = null;
         myScanner = new Scanner(System.in);
+        continueRunning = true;
     }
-    public void start(){
+    public void start() {
         System.out.println("Welcome to the linear equation calculator!");
-        getInfo();
+        while (continueRunning) {
+            getInfo();
+            if (Double.isNaN(equation.slope())){
+                System.out.print("Would you like to enter another pair of coordinates? y/n: ");
+                String answer = myScanner.nextLine();
+                if (answer.equals("n")) {
+                    System.out.println("Thank you for using the slope calculator, goodbye!");
+                    continueRunning = false;
+                }
+            } else {
+                updateInfo();
+                System.out.print("Would you like to enter another pair of coordinates? y/n: ");
+                String answer = myScanner.nextLine();
+                if (answer.equals("n")) {
+                    System.out.println("Thank you for using the slope calculator, goodbye!");
+                    continueRunning = false;
+                }
+            }
+        }
     }
 
 
@@ -37,25 +55,13 @@ public class LinearEquationLogic {
 
         equation = new LinearEquation(oneAsInt, twoAsInt, threeAsInt, fourAsInt);
         System.out.println(equation.lineInfo());
-        updateInfo();
-        askAgain();
-
     }
 
     private void updateInfo(){
         System.out.print("Enter an x-coordinate: ");
         double x = myScanner.nextDouble();
         System.out.println(equation.coordinateForX(x));
-        askAgain();
+        myScanner.nextLine();
     }
-    private void askAgain(){
-        System.out.print("Would you like to enter another pair of coordinates? y/n: ");
-        String answer = myScanner.nextLine();
-        if(answer.equals("y")){
-            getInfo();
-        }
-        if (answer.equals("n")){
-            System.out.println("Thank you for using the slope calculator, goodbye!");
-        }
-    }
+
 }
