@@ -33,7 +33,6 @@ public class LinearEquationLogic {
         }
     }
 
-
     private void getInfo(){
 
         System.out.print("Enter the first coordinate: "); // (6, 7)

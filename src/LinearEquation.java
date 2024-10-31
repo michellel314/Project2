@@ -43,6 +43,12 @@ public class LinearEquation {
             } else if (y1 == y2) {
                 return "y = " + y1;
             }
+        } else {
+            if (x1 == x2) {
+                return "x = " + x1;
+            } else if (y1 == y2) {
+                return "y = " + y1;
+            }
         }
         if (x < 0) {
             int newX = Math.abs(x);
